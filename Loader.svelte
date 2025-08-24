@@ -1,14 +1,12 @@
 <script>
-    import {onMount, onDestroy} from '/all.js';
-    export let size = 24;
-    export let text = null;
-    export let position = 'static';
+    import { onMount, onDestroy } from 'svelte';
 
+    let { size = 24, text = null, position = 'static' } = $props();
 
     // Не доверяю я CSS анимациям, комп шуметь начинает и Диспетчер Задач не в Восторге от Хрома
     let spinner_el;
     let interval;
-    let rotation_deg = 0;
+    let rotation_deg = $state(0);
     onMount(() => {
         interval = setInterval(() => {
             if (rotation_deg < 360) {

@@ -1,0 +1,19 @@
+@import '/les/toaster/notyf/notyf.min.css';
+
+.notyf {padding:24px;}
+    .Toast.notyf__toast {
+        padding:0;
+        margin-top:0;
+        background:#fff;
+        box-shadow:0 0 1px rgba(0,0,0,0.1), 0 0 2px rgba(0,0,0,0.2);
+        border-radius:var(--border-radius);
+        max-width:calc(480px - 48px);
+    }
+    .Toast.notyf__toast:not(:first-child) {margin-top:24px;}
+        .Toast .notyf__wrapper {padding:24px calc(48px + 12px) 24px 24px;}
+            .Toast .notyf__message {color:#000;}
+            .Toast .notyf__dismiss {width:48px;height:48px;margin:0;top:0;right:0;}
+                .Toast .notyf__dismiss-btn {background:none;}
+                    .Toast .notyf__dismiss-btn:before,
+                    .Toast .notyf__dismiss-btn:after {background:#000;top:calc(50% - 12px);height:24px;width:1px;}
+        .Toast .notyf__ripple {}
