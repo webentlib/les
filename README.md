@@ -7,7 +7,7 @@
 ```js
 // LES
 export { storable } from '/les/storable.js';
-export Nprogress from '/les/Nprogress.svelte';
-export Loader from '/les/Loader.svelte';
-export Idk from '/les/Idk.svelte';
+export { default as Nprogress } from '/les/Nprogress.svelte';
+export { default as Loader } from '/les/Loader.svelte';
+export { default as Idk } from '/les/Idk.svelte';
 ```
