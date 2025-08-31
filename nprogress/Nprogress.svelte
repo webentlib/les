@@ -4,7 +4,7 @@
     import { afterNavigate, beforeNavigate } from '$app/navigation';
     import { browser } from '$app/environment';
 
-    import NProgress from '/les/nprogress/nprogress/nprogress.js';
+    import NProgress from '/les/nprogress/nprogress/nprogress.ts';
     import '/les/nprogress/nprogress/nprogress.css';
 
     onMount(async () => {
