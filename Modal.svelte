@@ -32,8 +32,8 @@
 </script>
 
 {#if show}
-    <div class="MODAL">
-        <div bind:this={modal_window} class={'MODAL_WINDOW' + (modi ? ' ' + modi : '')}>
+    <div class={'MODAL' + (modi ? ' ' + modi : '')}>
+        <div class="MODAL_WINDOW" bind:this={modal_window}>
             {#if header}
                 <div class="MODAL_HEADER">
                     {@render header?.()}
