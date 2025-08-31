@@ -1,17 +1,17 @@
 /* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
  * @license MIT */
 
-;(function(root, factory) {
-
-  if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory();
-  } else {
-    root.NProgress = factory();
-  }
-
-})(this, function() {
+// ;(function(root, factory) {
+//
+//   if (typeof define === 'function' && define.amd) {
+//     define(factory);
+//   } else if (typeof exports === 'object') {
+//     module.exports = factory();
+//   } else {
+//     root.NProgress = factory();
+//   }
+//
+// })(this, function() {
   var NProgress = {};
 
   NProgress.version = '0.2.0';
@@ -471,6 +471,7 @@
     element && element.parentNode && element.parentNode.removeChild(element);
   }
 
-  return NProgress;
-});
+  export default NProgress;
+  // return NProgress;
+// });
 
