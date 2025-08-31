@@ -2,7 +2,7 @@
     import { Icons } from '/icons.ts';
     import { browser } from '/all.ts';
 
-    let { header, container, content, children, footer, show = $bindable() } = $props();
+    let { header, container, content, children, footer, show = $bindable(), modi = $bindable() } = $props();
 
     let modal_window;
 
@@ -33,7 +33,7 @@
 
 {#if show}
     <div class="MODAL">
-        <div class="MODAL_WINDOW" bind:this={modal_window}>
+        <div bind:this={modal_window} class={'MODAL_WINDOW' + (modi ? ' ' + modi : '')}>
             {#if header}
                 <div class="MODAL_HEADER">
                     {@render header?.()}
