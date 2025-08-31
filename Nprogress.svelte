@@ -1,5 +1,8 @@
 <script>
-    import {beforeNavigate, afterNavigate, onMount, onDestroy, browser} from '/all.js';
+
+    import { onMount, onDestroy } from 'svelte';
+    import { afterNavigate, beforeNavigate } from '$app/navigation';
+    import { browser } from '$app/environment';
 
     import NProgress from 'nprogress';
     import 'nprogress/nprogress.css';
