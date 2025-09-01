@@ -1,15 +1,25 @@
 <script>
+    import { onDestroy } from 'svelte';
     import { Icons } from '/icons.ts';
     import { browser } from '/all.ts';
 
     let { header, container, content, children, footer, show = $bindable(), modi = $bindable() } = $props();
 
-    let modal_window;
+    let modal_window = $state();
+    let modal_close = $state();
+
+    let clicked_inside;
+    function prevent_close_on_intersect(e) {
+        if (modal_window?.contains(e.target)) {
+            clicked_inside = true;
+        }
+    }
 
     function close_on_click_outside(e) {
-        if (!modal_window?.contains(e.target)) {
+        if (!clicked_inside && !modal_window?.contains(e.target)) {
             show = false;
         }
+        clicked_inside = false;
     }
 
     function close_on_escape(e) {
@@ -18,17 +28,49 @@
         }
     }
 
+    function close(e) {
+        clicked_inside = null;
+        show = false;
+    }
+
+    function add_event_listeners() {
+        modal_close.addEventListener('click', close);
+
+        modal_window.addEventListener('mousedown', prevent_close_on_intersect);
+        modal_window.addEventListener('touchstart', prevent_close_on_intersect);
+
+        window.addEventListener('mouseup', close_on_click_outside);
+        window.addEventListener('touchend', close_on_click_outside);
+
+        window.addEventListener('keydown', close_on_escape);
+    }
+
+    function remove_event_listeners() {
+        modal_close.removeEventListener('click', close);
+
+        modal_window.removeEventListener('mousedown', prevent_close_on_intersect);
+        modal_window.removeEventListener('touchstart', prevent_close_on_intersect);
+
+        window.removeEventListener('mouseup', close_on_click_outside);
+        window.removeEventListener('touchend', close_on_click_outside);
+        window.removeEventListener('keydown', close_on_escape);
+    }
+
     $effect(() => {
-        if (browser) {
+        if (browser && modal_window && modal_close) {
             if (show) {
-                window.addEventListener('click', close_on_click_outside, {capture: true});
-                window.addEventListener('keydown', close_on_escape);
+                add_event_listeners();
             } else {
-                window.removeEventListener('click', close_on_click_outside, {capture: true});
-                window.removeEventListener('keydown', close_on_escape);
+                remove_event_listeners();
             }
         }
-    })
+    });
+
+    onDestroy(() => {
+        if (browser && modal_window && modal_close) {
+            remove_event_listeners();
+        }
+    });
 </script>
 
 {#if show}
@@ -48,6 +90,8 @@
                 </div>
             {/if}
             <button
+                bind:this={modal_close}
+
                 class="MODAL_CLOSE BUTTON _LINK _ROUND _HUGE _GRAY"
 
                 class:_OUTSIDE={!header}

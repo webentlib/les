@@ -1,5 +1,5 @@
 export { storable } from '/les/storable.ts';
-export { dropdownsStore } from '/les/dropdowns.ts';
+export { dropdownsStore } from '/les/dropdowns.svelte.ts';
 export { Toaster } from '/les/toaster/toaster.ts';
 export { default as Nprogress } from '/les/nprogress/Nprogress.svelte';
 export { default as Loader } from '/les/Loader.svelte';
