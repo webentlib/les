@@ -1,4 +1,4 @@
-@import '/les/toaster/notyf/notyf.min.css';
+@import './notyf/notyf.min.css';
 
 .notyf {padding:24px;}
     .Toast.notyf__toast {

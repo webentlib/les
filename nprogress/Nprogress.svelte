@@ -4,8 +4,8 @@
     import { afterNavigate, beforeNavigate } from '$app/navigation';
     import { browser } from '$app/environment';
 
-    import NProgress from '/les/nprogress/nprogress/nprogress.ts';
-    import '/les/nprogress/nprogress/nprogress.css';
+    import NProgress from './nprogress/nprogress.ts';
+    import './nprogress/nprogress.css';
 
     onMount(async () => {
         NProgress.configure({showSpinner: false, minimum: 0.75, speed: 300});

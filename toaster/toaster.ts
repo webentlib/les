@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { Notyf } from '/les/toaster/notyf/notyf.min.js';
+import { Notyf } from './notyf/notyf.min.js';
 
 // https://github.com/caroso1222/notyf
 
