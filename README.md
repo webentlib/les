@@ -6,11 +6,14 @@
 
 ```js
 // LES
-export { storable } from '/les/storable.js';
-export { Toaster } from '/les/toaster/toaster.js';
-export { default as Nprogress } from '/les/Nprogress.svelte';
-export { default as Loader } from '/les/Loader.svelte';
-export { default as Idk } from '/les/Idk.svelte';
+export { storable } from './storable.ts';
+export { dropdownsStore } from './dropdowns.svelte.ts';
+export { Toaster } from './toaster/toaster.ts';
+export { default as Nprogress } from './nprogress/Nprogress.svelte';
+export { default as Loader } from './Loader.svelte';
+export { default as Idk } from './Idk.svelte';
+export { default as GoTop } from './GoTop.svelte';
+export { default as Modal } from './Modal.svelte';
 ```
 
 2. Add this to your `base.svelte`:
