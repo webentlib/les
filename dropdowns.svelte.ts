@@ -17,8 +17,7 @@ function dropdownStore(initial_value) {
         });
         $effect(() => {
             return () => {
-                node.removeEventListener('mousedown', prevent_close_on_intersect);
-                node.removeEventListener('touchstart', prevent_close_on_intersect);
+                remove_event_listeners();
 
                 update(store => {
                     delete store[key];
