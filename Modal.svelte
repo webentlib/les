@@ -37,10 +37,10 @@
         modal_close.addEventListener('click', close);
 
         modal_window.addEventListener('mousedown', prevent_close_on_intersect);
-        modal_window.addEventListener('touchstart', prevent_close_on_intersect);
+        modal_window.addEventListener('touchstart', prevent_close_on_intersect, {passive: true});
 
         window.addEventListener('mouseup', close_on_click_outside);
-        window.addEventListener('touchend', close_on_click_outside);
+        window.addEventListener('touchend', close_on_click_outside, {passive: true});
 
         window.addEventListener('keydown', close_on_escape);
     }
@@ -49,10 +49,10 @@
         modal_close.removeEventListener('click', close);
 
         modal_window.removeEventListener('mousedown', prevent_close_on_intersect);
-        modal_window.removeEventListener('touchstart', prevent_close_on_intersect);
+        modal_window.removeEventListener('touchstart', prevent_close_on_intersect, {passive: true});
 
         window.removeEventListener('mouseup', close_on_click_outside);
-        window.removeEventListener('touchend', close_on_click_outside);
+        window.removeEventListener('touchend', close_on_click_outside, {passive: true});
         window.removeEventListener('keydown', close_on_escape);
     }
 

@@ -6,7 +6,7 @@ function dropdownStore(initial_value) {
 
     function add(node, key) {
         node.addEventListener('mousedown', prevent_close_on_intersect);
-        node.addEventListener('touchstart', prevent_close_on_intersect);
+        node.addEventListener('touchstart', prevent_close_on_intersect, {passive: true});
 
         update(store => {
             store[key] = {
@@ -72,13 +72,13 @@ function close_on_escape(e) {
 
 function add_event_listeners() {
     window.addEventListener('mouseup', close_on_click_outside);
-    window.addEventListener('touchend', close_on_click_outside);
+    window.addEventListener('touchend', close_on_click_outside, {passive: true});
     window.addEventListener('keydown', close_on_escape);
 }
 
 function remove_event_listeners() {
     window.removeEventListener('mouseup', close_on_click_outside);
-    window.removeEventListener('touchend', close_on_click_outside);
+    window.removeEventListener('touchend', close_on_click_outside, {passive: true});
     window.removeEventListener('keydown', close_on_escape);
 }
 
