@@ -71,6 +71,7 @@
     onDestroy(() => {
         if (browser && modal_window && modal_close) {
             remove_event_listeners();
+            document.body.classList.remove('_SCROLL_DISABLED');
         }
     });
 </script>
