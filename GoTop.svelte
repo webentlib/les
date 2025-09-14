@@ -16,7 +16,7 @@
 </script>
 
 <button class="BUTTON _ROUND _HUGE" class:scrolled on:click|preventDefault={scroll} title="Наверх">
-    {@html Icons.chevron_up({size:36})}
+    {@html Icons.gotop_up({size:36})}
 </button>
 
 <style>

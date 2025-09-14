@@ -3,7 +3,7 @@
     import { Icons } from '/icons.ts';
     import { browser } from '/all.ts';
 
-    let { header, container, content, children, footer, show = $bindable(), modi = $bindable() } = $props();
+    let { header, container, content, children, footer, opened = $bindable(), modi = $bindable() } = $props();
 
     let modal_window = $state();
     let modal_close = $state();
@@ -17,20 +17,20 @@
 
     function close_on_click_outside(e) {
         if (!clicked_inside && !modal_window?.contains(e.target)) {
-            show = false;
+            opened = false;
         }
         clicked_inside = false;
     }
 
     function close_on_escape(e) {
         if (e.key === 'Escape') {
-            show = false;
+            opened = false;
         }
     }
 
     function close(e) {
         clicked_inside = null;
-        show = false;
+        opened = false;
     }
 
     function add_event_listeners() {
@@ -58,10 +58,12 @@
 
     $effect(() => {
         if (browser && modal_window && modal_close) {
-            if (show) {
+            if (opened) {
                 add_event_listeners();
+                document.body.classList.add('_SCROLL_DISABLED');
             } else {
                 remove_event_listeners();
+                document.body.classList.remove('_SCROLL_DISABLED');
             }
         }
     });
@@ -73,7 +75,7 @@
     });
 </script>
 
-{#if show}
+{#if opened}
     <div class={'MODAL' + (modi ? ' ' + modi : '')}>
         <div class="MODAL_WINDOW" bind:this={modal_window}>
             {#if header}
@@ -100,12 +102,12 @@
 
                 class:_INSIDE={header}
 
-                onclick={() => show = false}
+                onclick={() => opened = false}
             >
                 {#if !header}
-                    {@html Icons.x({size:48, stroke:2})}
+                    {@html Icons.modal_close({size:48, stroke:2})}
                 {:else}
-                    {@html Icons.x({size:36, stroke:1})}
+                    {@html Icons.modal_close({size:36, stroke:1})}
                 {/if}
             </button>
         </div>
