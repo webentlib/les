@@ -17,7 +17,7 @@ function dropdownStore(initial_value) {
         });
         $effect(() => {
             return () => {
-                remove_event_listeners();
+                review_event_listeners();
 
                 update(store => {
                     delete store[key];
@@ -82,13 +82,17 @@ function remove_event_listeners() {
     window.removeEventListener('keydown', close_on_escape);
 }
 
+function review_event_listeners() {
+    const has_opened = Object.values(store).some((dropdown) => dropdown.opened);
+    if (has_opened) {
+        add_event_listeners();
+    } else {
+        remove_event_listeners();
+    }
+}
+
 if (browser) {
     dropdownsStore.subscribe((store) => {
-        const has_opened = Object.values(store).some((dropdown) => dropdown.opened);
-        if (has_opened) {
-            add_event_listeners();
-        } else {
-            remove_event_listeners();
-        }
+        review_event_listeners();
     })
 }
