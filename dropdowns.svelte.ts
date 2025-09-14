@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 
 function dropdownStore(initial_value) {
     const { subscribe, set, update } = writable(initial_value);
@@ -83,6 +83,7 @@ function remove_event_listeners() {
 }
 
 function review_event_listeners() {
+    const store = get(dropdownsStore);
     const has_opened = Object.values(store).some((dropdown) => dropdown.opened);
     if (has_opened) {
         add_event_listeners();
