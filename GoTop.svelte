@@ -1,6 +1,6 @@
 <script>
-    import {onMount} from 'svelte';
-    import {Icons} from '/icons.js';
+    import { onMount } from 'svelte';
+    import { LesIcons } from './les_icons.js';
 
     let scrolled;
 
@@ -16,7 +16,7 @@
 </script>
 
 <button class="BUTTON _ROUND _HUGE" class:scrolled on:click|preventDefault={scroll} title="Наверх">
-    {@html Icons.gotop_up({size:36})}
+    {@html LesIcons.go_top_up({size:36})}
 </button>
 
 <style>

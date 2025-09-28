@@ -1,6 +1,6 @@
 <script>
     import { onDestroy } from 'svelte';
-    import { Icons } from '/icons.ts';
+    import { LesIcons } from './les_icons.ts';
     import { browser } from '/all.ts';
 
     let { header, container, content, children, footer, opened = $bindable(), modi = $bindable() } = $props();
@@ -106,9 +106,9 @@
                 onclick={() => opened = false}
             >
                 {#if !header}
-                    {@html Icons.modal_close({size:48, stroke:2})}
+                    {@html LesIcons.modal_close({size:48, stroke:2})}
                 {:else}
-                    {@html Icons.modal_close({size:36, stroke:1})}
+                    {@html LesIcons.modal_close({size:36, stroke:1})}
                 {/if}
             </button>
         </div>

@@ -14,13 +14,15 @@ export { storable, dropdownsStore, Toaster, Nprogress, Loader, Idk, GoTop, Modal
 import '/les/index.css';
 ```
 
-3. Relies on next icons to be in your `Icons.ts:Icons`:
+3. To override icons in `Icons.ts:Icons`:
 
 ```
-    gotop_up: ({size, width, height, stroke, style, cls, title, attrs}={}) => svg(size, width, height, stroke, style, cls, title, attrs,`
-        <path d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-    `),
-    modal_close: ({size, width, height, stroke, style, cls, title, attrs}={}) => svg(size, width, height, stroke, style, cls, title, attrs,`
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" />
-    `),
+import { LesIcons } from '/les/';
+
+LesIcons.go_top_up = ({size, width, height, stroke, style, cls, title, attrs}={}) => svg(size, width, height, stroke, style, cls, title, attrs,`
+    <path d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+`)
+LesIcons.go_top_up = ({size, width, height, stroke, style, cls, title, attrs}={}) => svg(size, width, height, stroke, style, cls, title, attrs,`
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" />
+`)
 ```
