@@ -9,7 +9,7 @@ Les.export_to_file = async function({url, file_name}={}) {
 
     if (!response.ok) {
         Toaster.bake('Что-то пошло не так');
-        throw new Error();
+        return;
     }
 
     if (!file_name) {
