@@ -11,11 +11,12 @@
     })
 
     function scroll(e) {
+        e.preventDefault();
         window.scrollTo({top: 0, behavior: 'smooth'})
     }
 </script>
 
-<button class="BUTTON _ROUND _HUGE" class:scrolled onclick|preventDefault={scroll} title="Наверх">
+<button class="BUTTON _ROUND _HUGE" class:scrolled onclick={scroll} title="Наверх">
     {@html LesIcons.go_top_up({size:36})}
 </button>
 
