@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { LesIcons } from './les_icons.js';
 
-    let scrolled;
+    let scrolled = $state(0);
 
     onMount(() => {
         window.onscroll = function() {
@@ -11,11 +11,12 @@
     })
 
     function scroll(e) {
+        e.preventDefault();
         window.scrollTo({top: 0, behavior: 'smooth'})
     }
 </script>
 
-<button class="BUTTON _ROUND _HUGE" class:scrolled on:click|preventDefault={scroll} title="Наверх">
+<button class="BUTTON _ROUND _HUGE" class:scrolled onclick={scroll} title="Наверх">
     {@html LesIcons.go_top_up({size:36})}
 </button>
 
