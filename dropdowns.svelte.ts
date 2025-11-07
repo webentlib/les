@@ -50,6 +50,10 @@ function prevent_close_on_intersect(e) {
 function close_on_click_outside(e) {
     dropdownsStore.update(store => {
         for (const [key, value] of Object.entries(store)) {
+            console.log(value.node)
+            console.log(e.target)
+            console.log(value.node?.contains(e.target))
+            console.log('---------')
             if (!clicked_inside && !value.node?.contains(e.target)) {
                 value.opened = false;
             }
