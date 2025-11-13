@@ -1,0 +1,10 @@
+:root {
+    --sticky-sidebar-top:var(--header-height);
+    --sticky-sidebar-bottom:0;
+}
+.STICKY_COLUMN {position:relative;display:flex;align-items:flex-start;}
+.STICKY_COLUMN._TOP {align-items:flex-start;}
+.STICKY_COLUMN._BOTTOM {align-items:flex-end;}
+    .STICKY_SIDEBAR {position:relative;top:var(--sticky-sidebar-top);}
+    .STICKY_COLUMN._TOP .STICKY_SIDEBAR {position:sticky;top:var(--sticky-sidebar-top) !important;bottom:auto !important;}
+    .STICKY_COLUMN._BOTTOM .STICKY_SIDEBAR {position:sticky;bottom:var(--sticky-sidebar-bottom) !important;top:auto !important;}
