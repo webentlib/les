@@ -31,6 +31,9 @@ export const Sticky = new function() {
 
     let lastScrollY;
 
+    let sentinelTopIntersecting;
+    let sentinelBottomIntersecting;
+
     const getThreshold = (propertyValue) => {
         const thresholdVar = window.getComputedStyle(this.sidebar).getPropertyValue(propertyValue);
         const thresholdCleaned = thresholdVar.replaceAll('calc(', '').replaceAll(')', '').replaceAll('px', '');
@@ -46,23 +49,27 @@ export const Sticky = new function() {
         const threshold = getThreshold('--sticky-sidebar-top')
 
         const listenReverseTop = (e) => {
-            console.log(lastScrollY, window.scrollY)
             const isScrollingDown = lastScrollY < window.scrollY;
             if (isScrollingDown) {
-                this.sidebar.style.top = this.sidebar.offsetTop + 'px';
-                this.column.classList.remove('_TOP')
+                if (!sentinelBottomIntersecting) {
+                    this.sidebar.style.top = this.sidebar.offsetTop + 'px';
+                    this.column.classList.remove('_TOP')
+                }
             }
             lastScrollY = window.scrollY;
         }
 
         let observer = new IntersectionObserver(async entries => {
             const entry = entries[0];
+            sentinelTopIntersecting = entry.isIntersecting;
             if (entry.isIntersecting) {
                 this.column.classList.add('_TOP');
                 window.addEventListener('scroll', listenReverseTop);
+                window.addEventListener('resize', listenReverseTop);
             } else {
                 this.column.classList.remove('_TOP');
                 window.removeEventListener('scroll', listenReverseTop);
+                window.removeEventListener('resize', listenReverseTop);
             }
         }, { threshold: 0, rootMargin: `0px 0px ${threshold}px 0px`, });
 
@@ -72,6 +79,7 @@ export const Sticky = new function() {
             destroy() {
                 observer.disconnect();
                 window.removeEventListener('scroll', listenReverseTop);
+                window.removeEventListener('resize', listenReverseTop);
             }
         };
     }
@@ -94,12 +102,17 @@ export const Sticky = new function() {
 
         let observer = new IntersectionObserver(async entries => {
             const entry = entries[0];
+            sentinelBottomIntersecting = entry.isIntersecting;
             if (entry.isIntersecting) {
-                this.column.classList.add('_BOTTOM')
-                window.addEventListener('scroll', listenReverseBottom);
+                if (!sentinelTopIntersecting) {
+                    this.column.classList.add('_BOTTOM')
+                    window.addEventListener('scroll', listenReverseBottom);
+                    window.addEventListener('resize', listenReverseBottom);
+                }
             } else {
                 this.column.classList.remove('_BOTTOM')
                 window.removeEventListener('scroll', listenReverseBottom);
+                window.removeEventListener('resize', listenReverseBottom);
             }
         }, { threshold: 0, rootMargin: `0px 0px ${threshold}px 0px`, });
 
@@ -109,6 +122,7 @@ export const Sticky = new function() {
             destroy() {
                 observer.disconnect();
                 window.removeEventListener('scroll', listenReverseBottom);
+                window.removeEventListener('resize', listenReverseBottom);
             }
         };
     }
