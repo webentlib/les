@@ -50,12 +50,21 @@ export const Sticky = new function() {
 
         const listenReverseTop = (e) => {
             const isScrollingDown = lastScrollY < window.scrollY;
+
             if (isScrollingDown) {
                 if (!sentinelBottomIntersecting) {
                     this.sidebar.style.top = this.sidebar.offsetTop + 'px';
-                    this.column.classList.remove('_TOP')
+                    this.column.classList.remove('_TOP');
                 }
+            } else {
+                // Есть кейс, когда стрелочка скролит наверх,
+                // при этом руками крутим вниз,
+                // поэтому, даже в штатном случае —
+                // перепроставляем соответствующие классы
+                this.column.classList.add('_TOP');
+                this.column.classList.remove('_BOTTOM');
             }
+
             lastScrollY = window.scrollY;
         }
 
@@ -92,12 +101,16 @@ export const Sticky = new function() {
 
         const listenReverseBottom = (e) => {
             const isScrollingUp = lastScrollY > window.scrollY;
-            lastScrollY = window.scrollY;
 
             if (isScrollingUp) {
                 this.sidebar.style.top = this.sidebar.offsetTop + 'px';
                 this.column.classList.remove('_BOTTOM')
+            } else {
+                this.column.classList.remove('_TOP');
+                this.column.classList.add('_BOTTOM');
             }
+
+            lastScrollY = window.scrollY;
         }
 
         let observer = new IntersectionObserver(async entries => {
