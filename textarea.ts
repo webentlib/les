@@ -1,6 +1,6 @@
 import {tick} from 'svelte';
 
-export async function Textarea(node) {
+export function Textarea(node) {
     async function autoresize() {
         await tick();
         node.style.height = 'auto'; // Reset height to recalculate
