@@ -93,6 +93,34 @@ export const Sticky = new function() {
         };
     }
 
+    this.sentinelMiddle = async function(el) {
+
+        await tick();
+        lastScrollY = window.scrollY;
+        const thresholdTop = getThreshold('--sticky-sidebar-top')
+        const thresholdBottom = getThreshold('--sticky-sidebar-bottom')
+
+        let observer = new IntersectionObserver(async entries => {
+            const entry = entries[0];
+            sentinelBottomIntersecting = entry.isIntersecting;
+            if (entry.isIntersecting) {
+                // ...
+            } else {
+                // console.log('NOT INTERSECTING')
+                this.column.classList.remove('_BOTTOM')
+                this.column.classList.add('_TOP')
+            }
+        }, { threshold: 0, rootMargin: `${thresholdBottom}px 0px ${thresholdTop}px 0px`, });
+
+        observer.observe(el);
+
+        return {
+            destroy() {
+                observer.disconnect();
+            }
+        };
+    }
+
     this.sentinelBottom = async function(el) {
 
         await tick();
@@ -127,7 +155,7 @@ export const Sticky = new function() {
                 window.removeEventListener('scroll', listenReverseBottom);
                 window.removeEventListener('resize', listenReverseBottom);
             }
-        }, { threshold: 0, rootMargin: `0px 0px ${threshold}px 0px`, });
+        }, { threshold: 0, rootMargin: `${threshold}px 0px 0px 0px`, });
 
         observer.observe(el);
 
