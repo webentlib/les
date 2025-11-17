@@ -32,6 +32,7 @@ export const Sticky = new function() {
     let lastScrollY;
 
     let sentinelTopIntersecting;
+    let sentinelMiddleIntersecting;
     let sentinelBottomIntersecting;
 
     let enabled = true;
@@ -47,7 +48,9 @@ export const Sticky = new function() {
 
     const reobserve = () => {
         enabled = threshold + this.sidebar.offsetHeight > window.innerHeight;
+        console.log(1)
         if (!enabled) {
+            console.log(2)
             this.column.classList.add('_TOP');
             this.column.classList.remove('_BOTTOM');
         }
@@ -63,10 +66,13 @@ export const Sticky = new function() {
         window.addEventListener('resize', reobserve);
 
         const listenReverseTop = (e) => {
+            console.log(3)
             const isScrollingDown = lastScrollY < window.scrollY;
 
             if (isScrollingDown) {
+                console.log(4)
                 if (!sentinelBottomIntersecting) {
+                    console.log(5)
                     this.sidebar.style.top = this.sidebar.offsetTop + 'px';
                     this.column.classList.remove('_TOP');
                 }
@@ -121,7 +127,7 @@ export const Sticky = new function() {
 
         let observer = new IntersectionObserver(async entries => {
             const entry = entries[0];
-            sentinelBottomIntersecting = entry.isIntersecting;
+            sentinelMiddleIntersecting = entry.isIntersecting;
             if (entry.isIntersecting) {
                 // ...
             } else {
