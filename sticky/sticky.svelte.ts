@@ -48,9 +48,7 @@ export const Sticky = new function() {
 
     const reobserve = () => {
         enabled = threshold + this.sidebar.offsetHeight > window.innerHeight;
-        console.log(1)
         if (!enabled) {
-            console.log(2)
             this.column.classList.add('_TOP');
             this.column.classList.remove('_BOTTOM');
         }
@@ -66,13 +64,11 @@ export const Sticky = new function() {
         window.addEventListener('resize', reobserve);
 
         const listenReverseTop = (e) => {
-            console.log(3)
+            if (!enabled) return;
             const isScrollingDown = lastScrollY < window.scrollY;
 
             if (isScrollingDown) {
-                console.log(4)
                 if (!sentinelBottomIntersecting) {
-                    console.log(5)
                     this.sidebar.style.top = this.sidebar.offsetTop + 'px';
                     this.column.classList.remove('_TOP');
                 }
@@ -156,6 +152,7 @@ export const Sticky = new function() {
         window.addEventListener('resize', reobserve);
 
         const listenReverseBottom = (e) => {
+            if (!enabled) return;
             const isScrollingUp = lastScrollY > window.scrollY;
 
             if (isScrollingUp) {
