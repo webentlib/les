@@ -46,7 +46,7 @@ export const Sticky = new function() {
         return threshold;
     }
 
-    const reobserve = () => {
+    this.reobserve = () => {
         enabled = threshold + this.sidebar.offsetHeight > window.innerHeight;
         if (!enabled) {
             this.column.classList.add('_TOP');
@@ -60,8 +60,8 @@ export const Sticky = new function() {
         lastScrollY = window.scrollY;
         threshold = getThreshold('--sticky-sidebar-top')
 
-        reobserve();
-        window.addEventListener('resize', reobserve);
+        this.reobserve();
+        window.addEventListener('resize', this.reobserve);
 
         const listenReverseTop = (e) => {
             if (!enabled) return;
@@ -106,7 +106,7 @@ export const Sticky = new function() {
                 observer.disconnect();
                 window.removeEventListener('scroll', listenReverseTop);
                 window.removeEventListener('resize', listenReverseTop);
-                window.removeEventListener('resize', reobserve);
+                window.removeEventListener('resize', this.reobserve);
             }
         };
     }
@@ -118,8 +118,8 @@ export const Sticky = new function() {
         threshold = getThreshold('--sticky-sidebar-top')
         const thresholdBottom = getThreshold('--sticky-sidebar-bottom')
 
-        reobserve();
-        window.addEventListener('resize', reobserve);
+        this.reobserve();
+        window.addEventListener('resize', this.reobserve);
 
         let observer = new IntersectionObserver(async entries => {
             const entry = entries[0];
@@ -148,8 +148,8 @@ export const Sticky = new function() {
         lastScrollY = window.scrollY;
         const thresholdBottom = getThreshold('--sticky-sidebar-bottom')
 
-        reobserve();
-        window.addEventListener('resize', reobserve);
+        this.reobserve();
+        window.addEventListener('resize', this.reobserve);
 
         const listenReverseBottom = (e) => {
             if (!enabled) return;
@@ -190,7 +190,7 @@ export const Sticky = new function() {
                 observer.disconnect();
                 window.removeEventListener('scroll', listenReverseBottom);
                 window.removeEventListener('resize', listenReverseBottom);
-                window.removeEventListener('resize', reobserve);
+                window.removeEventListener('resize', this.reobserve);
             }
         };
     }
