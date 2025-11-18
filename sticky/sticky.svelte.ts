@@ -83,11 +83,11 @@ export const Sticky = new function() {
 
             lastScrollY = window.scrollY;
         }
-
+        console.log(threshold)
         let observer = new IntersectionObserver(async entries => {
-            if (!enabled) return;
             const entry = entries[0];
             sentinelTopIntersecting = entry.isIntersecting;
+            if (!enabled) return;
             if (entry.isIntersecting) {
                 this.column.classList.add('_TOP');
                 window.addEventListener('scroll', listenReverseTop);
@@ -97,7 +97,7 @@ export const Sticky = new function() {
                 window.removeEventListener('scroll', listenReverseTop);
                 window.removeEventListener('resize', listenReverseTop);
             }
-        }, { threshold: 0, rootMargin: `0px 0px ${threshold}px 0px`, });
+        }, { threshold: 0, rootMargin: `-${threshold}px 0px 0px 0px`, });
 
         observer.observe(el);
 
@@ -131,7 +131,7 @@ export const Sticky = new function() {
                 this.column.classList.remove('_BOTTOM')
                 this.column.classList.add('_TOP')
             }
-        }, { threshold: 0, rootMargin: `${thresholdBottom}px 0px ${threshold}px 0px`, });
+        }, { threshold: 0, rootMargin: `-${threshold}px 0px ${thresholdBottom}px 0px`, });
 
         observer.observe(el);
 
@@ -167,9 +167,10 @@ export const Sticky = new function() {
         }
 
         let observer = new IntersectionObserver(async entries => {
-            if (!enabled) return;
             const entry = entries[0];
             sentinelBottomIntersecting = entry.isIntersecting;
+            if (!enabled) return;
+            console.log(sentinelTopIntersecting)
             if (entry.isIntersecting) {
                 if (!sentinelTopIntersecting) {
                     this.column.classList.add('_BOTTOM')
@@ -181,7 +182,7 @@ export const Sticky = new function() {
                 window.removeEventListener('scroll', listenReverseBottom);
                 window.removeEventListener('resize', listenReverseBottom);
             }
-        }, { threshold: 0, rootMargin: `0px 0px ${thresholdBottom}px 0px`, });
+        }, { threshold: 0, rootMargin: `0px 0px 0px 0px`, });
 
         observer.observe(el);
 
