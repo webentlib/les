@@ -83,7 +83,7 @@ export const Sticky = new function() {
 
             lastScrollY = window.scrollY;
         }
-        console.log(threshold)
+
         let observer = new IntersectionObserver(async entries => {
             const entry = entries[0];
             sentinelTopIntersecting = entry.isIntersecting;
