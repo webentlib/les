@@ -1,7 +1,11 @@
+<script>
+    const {children} = $props();
+</script>
+
 <div class="idnk">
     <div class="smile">¯\_(ツ)_/¯</div>
     <div class="message">
-        <slot/>
+        {@render children?.()}
     </div>
 </div>
 
