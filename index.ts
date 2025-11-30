@@ -1,7 +1,7 @@
 export { storable } from './storable.ts';
 export { dropdownsStore } from './dropdowns.svelte.ts';
 export { Toaster } from './toaster/toaster.ts';
-export { LesIcons } from './les_icons.ts';
+export { LesIcons } from './les.icons.ts';
 export { Les } from './les.ts';
 export { default as Nprogress } from './nprogress/Nprogress.svelte';
 export { default as Loader } from './Loader.svelte';
@@ -11,3 +11,4 @@ export { default as Modal } from './Modal.svelte';
 export { handle_device } from './server/handle_device.ts';
 export { Sticky } from './sticky/sticky.svelte.ts';
 export { Textarea } from './textarea.ts';
+export { svg } from './svg.ts';

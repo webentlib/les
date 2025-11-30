@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { LesIcons } from './les_icons.js';
+    import { LesIcons } from './les.icons.js';
 
     let scrolled = $state(0);
 

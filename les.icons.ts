@@ -4,7 +4,7 @@ https://heroicons.com/
 https://feathericons.com/
 */
 
-import { svg } from '/lab/'
+import { svg } from './svg'
 
 export const LesIcons = {
     go_top_up: ({size, width, height, stroke, style, cls, title, attrs}={}) => svg(size, width, height, stroke, style, cls, title, attrs,`

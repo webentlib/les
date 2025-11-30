@@ -1,7 +1,7 @@
 <script>
     import { onDestroy } from 'svelte';
-    import { LesIcons } from './les_icons.ts';
-    import { browser } from '/all.ts';
+    import { LesIcons } from './les.icons.ts';
+    import { browser } from '$app/environment';
 
     let { header, container, content, children, footer, opened = $bindable(), modi = $bindable() } = $props();
 
