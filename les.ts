@@ -20,7 +20,7 @@ Les.decode = function(encodedStr) {
     });
 }
 
-Les.export_to_file = async function({url, file_name}={}) {
+Les.export_to_file = async function({url, file_name}:any = {}) {
 
     const response = await fetch(url);
 
