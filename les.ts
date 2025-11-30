@@ -1,7 +1,24 @@
-import { Lab } from '/lab/';
 import { Toaster } from './toaster/toaster';
 
 export const Les: any = {};
+
+Les.decode = function(encodedStr) {
+    // AI
+    const regex = /=\?([^?]+)\?([bq])\?([^?]+)\?=/gi;
+    return encodedStr.replace(regex, (match, charset, encoding, text) => {
+        if (encoding.toLowerCase() === 'b') {
+            // Base64 decoding
+            const decodedBytes = atob(text);
+            // Decode UTF-8 bytes
+            return decodeURIComponent(escape(decodedBytes));
+        } else if (encoding.toLowerCase() === 'q') {
+            // Quoted-printable decoding (not needed here since your string uses 'b')
+            // Implement if necessary
+            return text;
+        }
+        return text;
+    });
+}
 
 Les.export_to_file = async function({url, file_name}={}) {
 
@@ -14,7 +31,7 @@ Les.export_to_file = async function({url, file_name}={}) {
 
     if (!file_name) {
         let disposition = response.headers.get('Content-Disposition');
-        disposition = Lab.decode(disposition);
+        disposition = Les.decode(disposition);
         file_name = 'file.xlsx'; // fallback filename
         if (disposition && disposition.includes('filename=')) {
             const filenameMatch = disposition.match(/filename\*?=['"]?([^'";]+)['"]?/);
