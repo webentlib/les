@@ -16,11 +16,17 @@
     }
 </script>
 
-<button class="BUTTON _ROUND _HUGE" class:scrolled onclick={scroll} title="Наверх">
-    {@html LesIcons.go_top_up({size:36})}
-</button>
+<div class="go-top-wrapper">
+    <button class="BUTTON _ROUND _HUGE" class:scrolled onclick={scroll} title="Наверх">
+        {@html LesIcons.go_top_up({size:36})}
+    </button>
+</div>
 
 <style>
+    .go-top-wrapper {
+        height:calc(54px + 24px * 2);
+    }
+
     button {
         display:flex;
         visibility:hidden;

@@ -98,7 +98,7 @@
                 class="MODAL_CLOSE BUTTON _LINK _ROUND _HUGE _GRAY"
 
                 class:_OUTSIDE={!header}
-                class:_NO_PSEUDO={!header}
+                class:_PSEUDO={!header}
                 class:_GIANT={!header}
 
                 class:_INSIDE={header}
