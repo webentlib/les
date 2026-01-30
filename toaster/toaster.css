@@ -10,9 +10,20 @@
         max-width:calc(480px - 48px);
     }
     .Toast.notyf__toast:not(:first-child) {margin-top:24px;}
-        .Toast .notyf__wrapper {padding:24px calc(48px + 12px) 24px 24px;}
-            .Toast .notyf__message {color:#000;}
-            .Toast .notyf__dismiss {width:48px;height:48px;margin:0;top:0;right:0;}
+        .Toast .notyf__wrapper {
+            /*padding:24px calc(48px + 12px) 24px 24px;*/
+            padding:0;
+        }
+            .Toast .notyf__message {
+                padding:24px 60px 24px 24px;
+                color:#000;white-space:pre-wrap;
+                max-height: calc(100vh - 48px - var(--header-height));
+                overflow-y:auto;
+            }
+            .Toast .notyf__dismiss {
+                position:absolute;
+                width:48px;height:48px;margin:0;top:12px;right:12px;
+            }
                 .Toast .notyf__dismiss-btn {background:none;}
                     .Toast .notyf__dismiss-btn:before,
                     .Toast .notyf__dismiss-btn:after {background:#000;top:calc(50% - 12px);height:24px;width:1px;}
