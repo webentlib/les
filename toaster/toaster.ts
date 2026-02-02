@@ -7,7 +7,7 @@ let notyf = {};
 
 if (browser) {
     notyf = new Notyf({
-        duration: 500000,
+        duration: 5000,
         position: {
             y: 'bottom',
             x: 'left',
