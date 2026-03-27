@@ -9,6 +9,5 @@ export { default as Idk } from './Idk.svelte';
 export { default as GoTop } from './GoTop.svelte';
 export { default as Modal } from './Modal.svelte';
 export { handle_device } from './server/handle_device.ts';
-export { Sticky } from './sticky/sticky.svelte.ts';
 export { Textarea } from './textarea.ts';
 export { svg } from './svg.ts';

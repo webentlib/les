@@ -23,9 +23,12 @@ if (browser) {
 }
 
 export const Toaster = new function() {
-    this.bake = function(message) {
+    this.bake = function(message, duration) {
         if (browser) {
-            notyf.open({type: 'info', message});
+            if (duration === false) {
+                notyf.dismissAll();
+            }
+            notyf.open({type: 'info', message, duration});
         }
     }
 }

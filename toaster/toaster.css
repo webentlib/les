@@ -1,6 +1,6 @@
 @import './notyf/notyf.min.css';
 
-.notyf {padding:24px;}
+.notyf {padding:24px;z-index:90;}
     .Toast.notyf__toast {
         padding:0;
         margin-top:0;
