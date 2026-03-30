@@ -7,9 +7,7 @@ export function storable(data=undefined) {
    const { subscribe, set, update } = store;
    const isBrowser = typeof window !== 'undefined';
 
-   isBrowser &&
-      localStorage.storable &&
-      set(JSON.parse(localStorage.storable));
+   isBrowser && localStorage.storable && set(JSON.parse(localStorage.storable));
 
    return {
       subscribe,
