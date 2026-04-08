@@ -60,10 +60,10 @@
         if (browser && modal_window && modal_close) {
             if (opened) {
                 add_event_listeners();
-                document.body.classList.add('_SCROLL_DISABLED');
+                document.documentElement.classList.add('_SCROLL_DISABLED');
             } else {
                 remove_event_listeners();
-                document.body.classList.remove('_SCROLL_DISABLED');
+                document.documentElement.classList.remove('_SCROLL_DISABLED');
             }
         }
     });
@@ -71,7 +71,7 @@
     onDestroy(() => {
         if (browser && modal_window && modal_close) {
             remove_event_listeners();
-            document.body.classList.remove('_SCROLL_DISABLED');
+            document.documentElement.classList.remove('_SCROLL_DISABLED');
         }
     });
 </script>
