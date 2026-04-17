@@ -3,7 +3,15 @@
     import { LesIcons } from './les.icons.ts';
     import { browser } from '$app/environment';
 
-    let { header, container, content, children, footer, opened = $bindable(), modi = $bindable() } = $props();
+    let {
+        header = null,
+        container = null,
+        content = null,
+        footer = null,
+        children,
+        opened = $bindable(),
+        modi = $bindable()
+    } = $props();
 
     let modal_window = $state();
     let modal_close = $state();
@@ -49,14 +57,14 @@
         modal_close.removeEventListener('click', close);
 
         modal_window.removeEventListener('mousedown', prevent_close_on_intersect);
-        modal_window.removeEventListener('touchstart', prevent_close_on_intersect, {passive: true});
+        modal_window.removeEventListener('touchstart', prevent_close_on_intersect);
 
         window.removeEventListener('mouseup', close_on_click_outside);
-        window.removeEventListener('touchend', close_on_click_outside, {passive: true});
+        window.removeEventListener('touchend', close_on_click_outside);
         window.removeEventListener('keydown', close_on_escape);
     }
 
-    $effect(() => {
+    $effect.pre(() => {
         if (browser && modal_window && modal_close) {
             if (opened) {
                 add_event_listeners();

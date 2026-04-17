@@ -2,23 +2,19 @@
     import { onMount } from 'svelte';
     import { LesIcons } from './les.icons.js';
 
-    let { solid } = $props();
+    let { solid = false } = $props();
 
     let scrolled = $state(0);
 
     onMount(() => {
-        for (const el of [window, document.body]) {
-            el.addEventListener("scroll", (e) => {
-                scrolled = el.scrollTop;
-            })
-        }
+        window.addEventListener("scroll", (e) => {
+            scrolled = window.pageYOffset;
+        })
     })
 
     function scroll(e) {
         e.preventDefault();
-        for (const el of [window, document.body]) {
-            el.scrollTo({top: 0, behavior: 'smooth'})
-        }
+        window.scrollTo({top: 0, behavior: 'smooth'})
     }
 </script>
 
